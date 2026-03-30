@@ -1,5 +1,5 @@
-<&trackball_central> {
-	cpi = <600>;
+&trackball_central {
+    cpi = <600>;
 }
 
 &trackball_central_listener {
