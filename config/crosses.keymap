@@ -73,7 +73,7 @@
             display-name = "Base";
             bindings = <
                 &kp TAB &kp N1 &kp N2 &kp N3 &kp N4 &kp N5   &kp N6 &kp N7  &kp N8     &kp N9   &kp N0    &kp ESC
-                &LALT   &kp Z  &kp P  &kp D  &kp L  &kp X    &kp EQUAL &kp U  &kp O     &kp Y   &kp Q    &kp BSPC
+                &kp LALT   &kp Z  &kp P  &kp D  &kp L  &kp X    &kp EQUAL &kp U  &kp O     &kp Y   &kp Q    &kp BSPC
                 &kp W &kp S  &kp N  &kp T  &kp H  &kp K    &kp MINUS &kp E  &kp A     &kp I   &kp C &kp B
                 &mo 1 &kp V  &kp F  &kp G  &kp M  &kp J    &kp FSLH &kp SEMI  &kp DOT &kp COMMA &kp APOS &kp LCTRL
                             &kp RET &mo 3 &kp SPACE   &kp R &td_shift &kp LGUI
@@ -84,8 +84,8 @@
             display-name = "Shortcuts";
             bindings = <
                 &kp LC(TAB) &kp LC(N1) &kp LC(N2) &kp LC(N3) &kp LC(N4) &kp LC(N5)   &kp LC(N6) &kp LC(N7)  &kp LC(N8)     &kp LC(N9)   &kp LC(N0)    &trans
-                &trans    &kp LC(Q)       &kp LC(W)       &kp LC(E)       &kp LC(R)       &kp LC(T)         &none   &none   &none &kp N9    &none &kp LC(BSPC)
-                &trans    &kp LC(A)       &kp LC(S)       &kp LC(D)       &kp LC(F)       &none   &kp LC(H) &none &kp LG(UP) &none &none &none
+                &trans    &kp LC(Q)       &kp LC(W)       &kp LC(E)       &kp LC(R)       &kp LC(T)         &kp LC(EQUAL)   &none   &none &kp N9    &none &kp LC(BSPC)
+                &trans    &kp LC(A)       &kp LC(S)       &kp LC(D)       &kp LC(F)       &kp LC(H)         &kp LC(MINUS)    &none &kp LG(UP) &none &none &none
                 &none     &kp LC(Z)       &kp LC(X)       &kp LC(C)       &kp LC(V)       &kp LC(B)         &kp LC(N)   &none   &kp LG(UP) &none    &kp GRAVE &trans
                                             &trans     &trans       &trans      &trans  &trans   &trans
             >;
@@ -107,7 +107,7 @@
             bindings = <
                 &alt_tab   &kp F1     &kp F2     &kp F3     &kp F4     &kp F5     &kp F6       &kp F7     &kp F8     &kp F9    &kp F10    &kp LC(LS(ESC))
                 &trans     &none    &kp LS(N9)   &kp LS(N0)   &kp C_BRI_DEC   &kp C_BRI_INC   &kp LS(LEFT_BRACE)    &kp LS(RIGHT_BRACE)    &kp LS(N8)    &kp LS(N1)    &none    &kp DEL
-                &kp LA(W)   &mo 4    &mkp RCLK  &mkp MCLK  &mkp LCLK  &kp C_PLAY_PAUSE     &kp LEFT_BRACKET    &kp RIGHT_BRACKET    &kp UP    &none    &kp HOME   &kp END
+                &kp LA(W)   &mo 4    &mkp RCLK  &mkp MCLK  &mkp LCLK  &kp C_PLAY_PAUSE     &kp LEFT_BRACE    &kp LEFT_BRACE    &kp UP    &none    &kp HOME   &kp END
                 &sk LCTRL   &kp C_MUTE   &kp C_VOLUME_DOWN    &kp C_VOLUME_UP   &kp LG(V)   &kp LG(LS(S))    &kp BACKSLASH    &kp LEFT    &kp DOWN    &kp RIGHT   &kp PAGE_UP    &kp PAGE_DOWN
                                                      &kp LG(P)   &trans   &trans     &lang_en    &lang_ua    &lang_jp     
             >;
