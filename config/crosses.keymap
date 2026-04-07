@@ -71,9 +71,9 @@
     };
 	
 	behaviors {
-		caps_word {
+		&caps_word {
             // Tells Caps Word to stay alive if you type an underscore, minus, or backspace
-            continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
+            continue-list = <MINUS BACKSPACE DELETE>;
         };
 	
         alt_tab: alt_tab {
@@ -100,7 +100,7 @@
         ht_r: ht_shift_layer {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "tap-preferred";
+            flavor = "balanced";
             tapping-term-ms = <150>;
 			quick-tap-ms = <125>; 
 			global-quick-tap;
@@ -128,7 +128,7 @@
             bindings = <
                 &kp LC(TAB) &kp LC(N1) &kp LC(N2) &kp LC(N3) &kp LC(N4) &kp LC(N5)   &kp LC(N6) &kp LC(N7)  &kp LC(N8)     &kp LC(N9)   &kp LC(N0)    &trans
                 &trans    &kp LC(Q)       &kp LC(W)       &kp LC(E)       &kp LC(R)       &kp LC(T)         &kp LC(EQUAL)   &none   &none &kp N9    &none &kp LC(BSPC)
-                &trans    &kp LC(A)       &kp LC(S)       &kp LC(D)       &kp LC(F)       &kp LC(H)         &kp LC(MINUS)    &none &kp LG(UP) &none &none &none
+                &kp LC(LS(Z))    &kp LC(A)       &kp LC(S)       &kp LC(D)       &kp LC(F)       &kp LC(H)         &kp LC(MINUS)    &none &kp LG(UP) &none &none &none
                 &none     &kp LC(Z)       &kp LC(X)       &kp LC(C)       &kp LC(V)       &kp LC(B)         &kp LC(N)   &snap_right   &kp LG(DOWN) &snap_left    &kp GRAVE &trans
                                             &trans     &trans       &trans      &trans  &trans   &trans
             >;
