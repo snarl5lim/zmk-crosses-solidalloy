@@ -12,6 +12,20 @@
 };
 
 / {
+    combos {
+        compatible = "zmk,combos";
+        
+        /* * COMBO: TRACKBALL SWAP
+         * Requires pressing the Left Inner Thumb (50) and Right Inner Thumb (51)
+         * within 50ms to toggle the isolated Layer 4.
+         */
+        combo_swap_trackballs {
+            timeout-ms = <50>; 
+            key-positions = <48 53>; 
+            bindings = <&tog 5>; 
+        };
+    };
+
     macros {
         lang_en: lang_en {
             compatible = "zmk,behavior-macro";
@@ -263,5 +277,42 @@
                                               &trans          &trans           &trans  &trans        &trans        &trans
             >;
         };
+        /* * LAYER 4: TRACKBALL STATE (ISOLATED)
+         * This layer contains nothing but &trans (transparent) keys. 
+         * It cannot be accessed by normal typing; it only exists as a boolean 
+         * "flag" (On/Off) triggered by the combo to tell the listeners to swap.
+         */
+        trackball_swap_layer {
+            bindings = <
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                     &trans &trans &trans   &trans &trans &trans
+            >;
+        };
+    };
+};
+
+/* * TRACKBALL LISTENER OVERRIDES
+ * ZMK Documentation: Layer Specific Overrides
+ * (https://zmk.dev/docs/keymaps/input-processors/usage#layer-specific-overrides)
+ */
+
+&trackball_peripheral_listener {
+    /* Left Trackball Default: Scroll */
+    swap_to_mouse {
+        /* When our isolated combo layer (5) is toggled ON, override to Mouse */
+        layers = <5>; 
+        input-processors = <&zip_ble_report_rate_limit>; 
+    };
+};
+
+&trackball_central_listener {
+    /* Right Trackball Default: Mouse */
+    swap_to_scroll {
+        /* When our isolated combo layer (5) is toggled ON, override to Scroll */
+        layers = <5>;
+        input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_snap>;
     };
 };
