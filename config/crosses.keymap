@@ -298,28 +298,42 @@
 /* * TRACKBALL LISTENER OVERRIDES
  * ZMK Documentation: Layer Specific Overrides
  * (https://zmk.dev/docs/keymaps/input-processors/usage#layer-specific-overrides)
+/* * SOFTWARE-DEFINED TRACKBALL LOGIC
+ * Base Hardware: Both trackballs are Mice at 600 CPI.
+ * Layer 0: Left = Scroll, Right = Mouse.
+ * Layer 5: Left = Mouse, Right = Scroll.
  */
 
 &trackball_peripheral_listener {
-    swap_to_mouse {
-        layers = <5>; 
-        /* [CHANGED CODE] 
-         * Added &zip_xy_transform (INPUT_TRANSFORM_Y_INVERT) to 
-         * cancel out the hardware y-invert defined in the overlay.
+    /* --- LEFT TRACKBALL --- */
+    
+    layer_0_scroll {
+        /* Layer 0: Override the base hardware to become a Scroll Wheel.
+         * We apply Y_INVERT to correct the cursor direction based on the sensor orientation.
          */
+        layers = <0>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_snap>;
+    };
+    
+    layer_5_mouse {
+        /* Layer 5: We MUST explicitly override Layer 0 here to strip the scroll mapper 
+         * and return it to a standard mouse. We keep the Y-invert so the mouse cursor 
+         * does not move backwards.
+         */
+        layers = <5>; 
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_ble_report_rate_limit>; 
     };
 };
 
 &trackball_central_listener {
-    swap_to_scroll {
-        layers = <5>;
-        /* [CHANGED CODE] 
-         * Added &zip_xy_scaler 1 3 (Multiplier 1, Divisor 3). 
-         * This cuts the trackball sensitivity down to 33% before it hits the scroll mapper. 
-         * If it is still too fast, change it to <&zip_xy_scaler 1 4>. 
-         * If it is too slow, change it to <&zip_xy_scaler 1 2>.
+    /* --- RIGHT TRACKBALL --- */
+    
+    layer_5_scroll {
+        /* Layer 0: Does nothing (Remains a Mouse based on the .overlay).
+         * Layer 5: Overrides the hardware to become a Scroll Wheel.
+         * We use zip_xy_scaler (1/3rd speed) to tame the 600 CPI so it doesn't scroll too fast.
          */
+        layers = <5>;
         input-processors = <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_snap>;
     };
 };
