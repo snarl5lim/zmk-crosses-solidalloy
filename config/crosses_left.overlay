@@ -1,10 +1,12 @@
 &trackball_peripheral {
-    cpi = <200>;
+    /* Set to 600 CPI for smooth standard mouse movement */
+    cpi = <600>;
     y-invert;
-	/delete-property/ x-invert;
+    /delete-property/ x-invert;
 };
 
 &trackball_peripheral_split {
-  device = <&trackball_peripheral>;
-  input-processors = <&zip_ble_report_rate_limit>;
+    device = <&trackball_peripheral>;
+    /* Pure mouse data sent to the central half via Bluetooth */
+    input-processors = <&zip_ble_report_rate_limit>;
 };
