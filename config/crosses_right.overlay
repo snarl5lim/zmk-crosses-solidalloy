@@ -1,25 +1,12 @@
-#include <scroll-snap.dtsi>
-
 &trackball_central {
-    /* Set to 600 CPI to perfectly match the left side */
     cpi = <600>;
 };
-
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
-    /* Hardware Default: Standard Mouse */
     input-processors = <&zip_ble_report_rate_limit>;
 };
-
-/* Define the scroll snap threshold variables here to keep the keymap clean */
-&zip_scroll_snap {
-    require-n-samples = <3>; 
-    immediate-snap-threshold = <500>; 
-};
-
 &trackball_peripheral_listener {
     status = "okay";
-    /* Hardware Default: Standard Mouse */
     input-processors = <&zip_ble_report_rate_limit>;
 };
