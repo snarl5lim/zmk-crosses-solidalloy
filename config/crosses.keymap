@@ -313,21 +313,22 @@
 &trackball_peripheral_listener {
     /* --- LEFT TRACKBALL --- */
     
-    layer_0_scroll {
-        /* Layer 0: Override the base hardware to become a Scroll Wheel.
-         * We apply Y_INVERT to correct the cursor direction based on the sensor orientation.
-         */
-        layers = <0>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_snap>;
-    };
-    
     layer_5_mouse {
-        /* Layer 5: We MUST explicitly override Layer 0 here to strip the scroll mapper 
-         * and return it to a standard mouse. We keep the Y-invert so the mouse cursor 
-         * does not move backwards.
+        /* [CHANGED] MOVED TO TOP. 
+         * The engine checks this FIRST. If Layer 5 is active, it strips the 
+         * scroll mapper and makes it a mouse.
          */
         layers = <5>; 
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_ble_report_rate_limit>; 
+    };
+
+    layer_0_scroll {
+        /* [CHANGED] MOVED TO BOTTOM. 
+         * The engine checks this LAST. If Layer 5 is NOT active, it falls back 
+         * to Layer 0 and makes it a Scroll Wheel.
+         */
+        layers = <0>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_snap>;
     };
 };
 
@@ -335,9 +336,9 @@
     /* --- RIGHT TRACKBALL --- */
     
     layer_5_scroll {
-        /* Layer 0: Does nothing (Remains a Mouse based on the .overlay).
-         * Layer 5: Overrides the hardware to become a Scroll Wheel.
-         * We use zip_xy_scaler (1/3rd speed) to tame the 600 CPI so it doesn't scroll too fast.
+        /* The right side only has one override, so order doesn't matter here. 
+         * Layer 0 does nothing (remains a Mouse based on the .overlay).
+         * Layer 5 overrides the hardware to become a Scroll Wheel.
          */
         layers = <5>;
         input-processors = <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_snap>;
