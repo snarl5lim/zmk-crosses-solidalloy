@@ -1,35 +1,25 @@
 #include <scroll-snap.dtsi>
 
 &trackball_central {
+    /* Set to 600 CPI to perfectly match the left side */
     cpi = <600>;
 };
 
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
-    input-processors 
-        = <&zip_xy_scaler 2 1>
-        , <&zip_ble_report_rate_limit>;
-		
-	sniper_override {
-        layers = <4>;
-        input-processors = <&zip_ble_report_rate_limit>;
-    };
+    /* Hardware Default: Standard Mouse */
+    input-processors = <&zip_ble_report_rate_limit>;
 };
 
+/* Define the scroll snap threshold variables here to keep the keymap clean */
 &zip_scroll_snap {
-    // The default is 10. Lowering this makes it decide much faster.
     require-n-samples = <3>; 
-    
-    // The default is 1500. This is the velocity/distance threshold that bypasses 
-    // the sample requirement and forces an instant snap. Lowering this makes 
-    // quick flicks snap instantly.
     immediate-snap-threshold = <500>; 
 };
 
 &trackball_peripheral_listener {
-  status = "okay";
-  input-processors
-    = <&zip_xy_to_scroll_mapper>
-    , <&zip_scroll_snap>;
+    status = "okay";
+    /* Hardware Default: Standard Mouse */
+    input-processors = <&zip_ble_report_rate_limit>;
 };
