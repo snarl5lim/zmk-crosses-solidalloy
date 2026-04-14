@@ -96,12 +96,14 @@
     behaviors {
         mo_mkp: layer_tap_mouse_click {
             // Custom Hold-Tap for Mouse Clicks
+
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred"; // Better for rapid clicking
             tapping-term-ms = <200>;  // How long to hold to trigger the layer
             quick-tap-ms = <125>;     // Allows rapid double-clicking without triggering the layer
-            bindings = <&mo>, <&mkp>; // <--- The magic: Links Layer + Mouse Click
+            bindings = <&mo>, <&mkp>;
+ // <--- The magic: Links Layer + Mouse Click
         };
 
         alt_tab: alt_tab {
@@ -247,11 +249,11 @@
         base_layer {
             display-name = "Base";
             bindings = <
-&mt MINUS TAB  &kp N1          &kp N2          &kp N3               &kp N4            &kp N5     &kp N6     &kp N7             &kp N8                   &kp N9                &kp N0               &mt EQUAL ESCAPE
-&mt CAPS SQT   &kp Q           &kp W           &kp E                &kp R             &kp T      &kp Y      &kp U              &kp I                    &kp O                 &kp P                &kp MINUS
-&sl 2          &kp A           &kp S           &kp D                &kp F             &kp G      &kp H      &kp J              &kp K                    &kp L                 &kp SEMICOLON        &sl 3
-&to 5          &mt LEFT_WIN Z  &mt LEFT_ALT X  &mt LEFT_CONTROL C   &mt LEFT_SHIFT V  &kp B      &kp N      &mt RIGHT_SHIFT M  &mt RIGHT_CONTROL COMMA  &mt RIGHT_ALT PERIOD  &mt RIGHT_WIN SLASH  &to 2
-                                               &mo_sk 4 LEFT_SHIFT  &lt 2 SPACE       &lt 2 RET  &bspc_del  &lt 3 SPACE        &mo_sk 5 RIGHT_SHIFT
+&mt MINUS TAB  &kp N1          &kp N2          &kp N3              &kp N4            &kp N5     &kp N6     &kp N7             &kp N8                   &kp N9                &kp N0               &mt EQUAL ESCAPE
+&mt CAPS SQT   &kp Q           &kp W           &kp E               &kp R             &kp T      &kp Y      &kp U              &kp I                    &kp O                 &kp P                &kp MINUS
+&sl 2          &kp A           &kp S           &kp D               &kp F             &kp G      &kp H      &kp J              &kp K                    &kp L                 &kp SEMICOLON        &sl 3
+&to 5          &mt LEFT_WIN Z  &mt LEFT_ALT X  &mt LEFT_CONTROL C  &mt LEFT_SHIFT V  &kp B      &kp N      &mt RIGHT_SHIFT M  &mt RIGHT_CONTROL COMMA  &mt RIGHT_ALT PERIOD  &mt RIGHT_WIN SLASH  &to 2
+                                               &mo_mkp 4 LCLK      &lt 2 SPACE       &lt 2 RET  &bspc_del  &lt 3 SPACE        &mo_mkp 5 RCLK
             >;
         };
 
