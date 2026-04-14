@@ -107,13 +107,15 @@
 
         to_tap: hold_tap_reset4baselayer {
             // Custom Hold-Tap for Layer Reset */
+
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;  // Hold time to trigger the layer reset
             quick-tap-ms = <125>;     // Prevents reset if you double-tap Enter quickly
             /* The magic: Binds Go-To Layer (&to) on hold, and Key Press (&kp) on tap */
-            bindings = <&to>, <&kp>; 
+
+            bindings = <&to>, <&kp>;
         };
 
         alt_tab: alt_tab {
@@ -259,11 +261,11 @@
         base_layer {
             display-name = "Base";
             bindings = <
-&mt MINUS TAB  &kp N1          &kp N2          &kp N3              &kp N4            &kp N5     &kp N6     &kp N7             &kp N8                   &kp N9                &kp N0               &mt EQUAL ESCAPE
-&mt CAPS SQT   &kp Q           &kp W           &kp E               &kp R             &kp T      &kp Y      &kp U              &kp I                    &kp O                 &kp P                &kp MINUS
-&sl 2          &kp A           &kp S           &kp D               &kp F             &kp G      &kp H      &kp J              &kp K                    &kp L                 &kp SEMICOLON        &sl 3
-&to 5          &mt LEFT_WIN Z  &mt LEFT_ALT X  &mt LEFT_CONTROL C  &mt LEFT_SHIFT V  &kp B      &kp N      &mt RIGHT_SHIFT M  &mt RIGHT_CONTROL COMMA  &mt RIGHT_ALT PERIOD  &mt RIGHT_WIN SLASH  &to 2
-                                               &mo_mkp 4 LCLK      &lt 2 SPACE       &lt 2 RET  &bspc_del  &lt 3 SPACE        &mo_mkp 5 RCLK
+&mt MINUS TAB  &kp N1          &kp N2          &kp N3              &kp N4            &kp N5         &kp N6     &kp N7             &kp N8                   &kp N9                &kp N0               &mt EQUAL ESCAPE
+&mt CAPS SQT   &kp Q           &kp W           &kp E               &kp R             &kp T          &kp Y      &kp U              &kp I                    &kp O                 &kp P                &kp MINUS
+&sl 2          &kp A           &kp S           &kp D               &kp F             &kp G          &kp H      &kp J              &kp K                    &kp L                 &kp SEMICOLON        &sl 3
+&to 5          &mt LEFT_WIN Z  &mt LEFT_ALT X  &mt LEFT_CONTROL C  &mt LEFT_SHIFT V  &kp B          &kp N      &mt RIGHT_SHIFT M  &mt RIGHT_CONTROL COMMA  &mt RIGHT_ALT PERIOD  &mt RIGHT_WIN SLASH  &to 2
+                                               &mo_mkp 4 LCLK      &lt 2 SPACE       &to_tap 0 RET  &bspc_del  &lt 3 SPACE        &mo_mkp 5 RCLK
             >;
         };
 
@@ -291,11 +293,11 @@
         symbolnum_layer {
             display-name = "Symbol";
             bindings = <
-&kp TILDE  &kp N1    &kp N2  &kp N3     &kp N4     &kp N5     &kp N6     &kp N7     &kp N8           &kp N9    &kp N0    &kp GRAVE
-&kp TAB    &kp EXCL  &kp AT  &kp HASH   &kp DLLR   &kp PRCNT  &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
-&trans     &trans    &trans  &kp CARET  &kp TILDE  &trans     &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp BSLH  &kp GRAVE
-&to 2      &trans    &trans  &trans     &trans     &trans     &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &to 4
-                             &trans     &trans     &trans     &trans     &trans     &trans
+&none  &kp N1           &kp N2         &kp N3            &kp N4             &kp N5         &kp N6       &kp N7                &kp N8                 &kp N9         &kp N0             &none
+&none  &kp APOSTROPHE   &kp LESS_THAN  &kp GREATER_THAN  &kp MINUS          &kp PIPE       &kp CARET    &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOLLAR     &kp DEL            &none
+&none  &kp EXCLAMATION  &kp ASTERISK   &kp SLASH         &kp EQUAL          &kp AMPERSAND  &kp HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp DOUBLE_QUOTES  &none
+&to 2  &kp TILDE        &kp PLUS       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PERCENT    &kp AT_SIGN  &kp COLON             &kp COMMA              &kp PERIOD     &kp SINGLE_QUOTE   &to 4
+                                       &trans            &trans             &trans         &trans       &trans                &trans
             >;
         };
 
