@@ -94,6 +94,16 @@
     };
 
     behaviors {
+        mo_mkp: layer_tap_mouse_click {
+            // Custom Hold-Tap for Mouse Clicks
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred"; // Better for rapid clicking
+            tapping-term-ms = <200>;  // How long to hold to trigger the layer
+            quick-tap-ms = <125>;     // Allows rapid double-clicking without triggering the layer
+            bindings = <&mo>, <&mkp>; // <--- The magic: Links Layer + Mouse Click
+        };
+
         alt_tab: alt_tab {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
