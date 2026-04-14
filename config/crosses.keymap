@@ -103,7 +103,17 @@
             tapping-term-ms = <200>;  // How long to hold to trigger the layer
             quick-tap-ms = <125>;     // Allows rapid double-clicking without triggering the layer
             bindings = <&mo>, <&mkp>;
- // <--- The magic: Links Layer + Mouse Click
+        };
+
+        to_tap: to_tap {
+            // Custom Hold-Tap for Layer Reset */
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;  // Hold time to trigger the layer reset
+            quick-tap-ms = <125>;     // Prevents reset if you double-tap Enter quickly
+            /* The magic: Binds Go-To Layer (&to) on hold, and Key Press (&kp) on tap */
+            bindings = <&to>, <&kp>; 
         };
 
         alt_tab: alt_tab {
