@@ -105,7 +105,7 @@
             bindings = <&mo>, <&mkp>;
         };
 
-        to_tap: to_tap {
+        to_tap: hold_tap_reset4baselayer {
             // Custom Hold-Tap for Layer Reset */
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
