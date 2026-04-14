@@ -1,15 +1,16 @@
 #include <scroll-snap.dtsi>
 #include <behaviors/num_word.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk/input_transform.h> 
 
 /* Global Scroll Snap Configuration */
+
 &zip_scroll_snap {
-    require-n-samples = <3>; 
-    immediate-snap-threshold = <500>; 
+    require-n-samples = <3>;
+    immediate-snap-threshold = <500>;
 };
 
 &caps_word {
@@ -21,15 +22,16 @@
 / {
     combos {
         compatible = "zmk,combos";
-        
+
         /* * COMBO: TRACKBALL SWAP
          * Requires pressing the Left Inner Thumb (50) and Right Inner Thumb (51)
          * within 50ms to toggle the isolated Layer 4.
          */
+
         combo_swap_trackballs {
-            timeout-ms = <50>; 
-            key-positions = <48 53>; 
-            bindings = <&tog 5>; 
+            timeout-ms = <50>;
+            key-positions = <48 53>;
+            bindings = <&tog 1>;
         };
     };
 
@@ -43,7 +45,7 @@
         lang_ua: lang_ua {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(LS(N2))>, <&macro_pause_for_release>, <&to 2>;
+            bindings = <&kp LC(LS(N2))>, <&macro_pause_for_release>, <&to 3>;
         };
 
         lang_jp: lang_jp {
@@ -113,7 +115,8 @@
             tapping-term-ms = <170>;
             quick-tap-ms = <75>;
             bindings = <&kp>, <&kp>;
- // Uses standard keypresses for zero lag
+
+            // Uses standard keypresses for zero lag
         };
 
         mo_tap: mo_tap {
@@ -123,7 +126,8 @@
             tapping-term-ms = <170>;
             quick-tap-ms = <75>;
             bindings = <&mo>, <&kp>;
- // Uses standard keypresses for zero lag
+
+            // Uses standard keypresses for zero lag
         };
 
         mo_sk: layer_hold_sticky_tap {
@@ -233,11 +237,21 @@
         base_layer {
             display-name = "Base";
             bindings = <
-&kp TAB       &kp N1  &kp N2      &kp N3      &kp N4       &kp N5     &kp N6     &kp N7       &kp N8               &kp N9                &kp N0         &kp ESC
-&mt CAPS SQT  &kp Q   &kp W       &kp E       &kp R        &kp T      &kp Y      &kp U        &kp I                &kp O                 &kp P          &bspc_del
-&sl 1         &kp A   &kp S       &kp D       &kp F        &kp G      &kp H      &kp J        &kp K                &kp L                 &kp SEMICOLON  &sl 2
-&to 4         &kp Z   &mt LWIN X  &mt LALT C  &mt LCTRL V  &kp B      &kp N      &mt RCTRL M  &mt RIGHT_ALT COMMA  &mt RIGHT_WIN PERIOD  &kp SLASH      &to 1
-                                  &mkp LCLK   &lt 1 SPACE  &lt 3 RET  &lt 4 RET  &lt 2 SPACE  &mkp RCLK
+&mt MINUS TAB  &kp N1          &kp N2          &kp N3               &kp N4            &kp N5     &kp N6     &kp N7             &kp N8                   &kp N9                &kp N0               &mt EQUAL ESCAPE
+&mt CAPS SQT   &kp Q           &kp W           &kp E                &kp R             &kp T      &kp Y      &kp U              &kp I                    &kp O                 &kp P                &kp MINUS
+&sl 2          &kp A           &kp S           &kp D                &kp F             &kp G      &kp H      &kp J              &kp K                    &kp L                 &kp SEMICOLON        &sl 3
+&to 5          &mt LEFT_WIN Z  &mt LEFT_ALT X  &mt LEFT_CONTROL C   &mt LEFT_SHIFT V  &kp B      &kp N      &mt RIGHT_SHIFT M  &mt RIGHT_CONTROL COMMA  &mt RIGHT_ALT PERIOD  &mt RIGHT_WIN SLASH  &to 2
+                                               &mo_sk 4 LEFT_SHIFT  &lt 2 SPACE       &lt 2 RET  &bspc_del  &lt 3 SPACE        &mo_sk 5 RIGHT_SHIFT
+            >;
+        };
+
+        trackball_swap_layer {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
@@ -247,7 +261,7 @@
 &none       &kp F1           &kp F2       &kp F3      &kp F4           &kp F5       &kp F6          &kp F7              &kp F8        &kp F9         &kp F10        &none
 &kp K_REDO  &kp K_FIND       &kp LC(W)    &kp LC(T)   &kp LC(LS(TAB))  &kp LC(TAB)  &kp K_MENU      &kp PG_DN           &kp ENTER     &kp INS        &kp PG_UP      &none
 &kp K_UNDO  &kp LA(LS(TAB))  &kp LA(TAB)  &kp K_COPY  &kp K_PASTE      &kp K_CUT    &kp LEFT_ARROW  &kp DOWN_ARROW      &kp UP_ARROW  &kp RIGHT      &kp BACKSPACE  &kp RC(BACKSPACE)
-&to 0       &kp LC(LA(TAB))  &kp LC(A)    &kp TAB     &kp K_PREV       &kp K_NEXT   &kp HOME        &kp RC(LEFT_ARROW)  &kp DEL       &kp RC(RIGHT)  &kp END        &to 2
+&to 0       &kp LC(LA(TAB))  &kp LC(A)    &kp TAB     &kp K_PREV       &kp K_NEXT   &kp HOME        &kp RC(LEFT_ARROW)  &kp DEL       &kp RC(RIGHT)  &kp END        &to 3
                                           &trans      &trans           &trans       &trans          &trans              &trans
             >;
         };
@@ -258,7 +272,7 @@
 &kp TILDE  &kp N1    &kp N2  &kp N3     &kp N4     &kp N5     &kp N6     &kp N7     &kp N8           &kp N9    &kp N0    &kp GRAVE
 &kp TAB    &kp EXCL  &kp AT  &kp HASH   &kp DLLR   &kp PRCNT  &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
 &trans     &trans    &trans  &kp CARET  &kp TILDE  &trans     &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp BSLH  &kp GRAVE
-&to 1      &trans    &trans  &trans     &trans     &trans     &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &to 3
+&to 2      &trans    &trans  &trans     &trans     &trans     &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &to 4
                              &trans     &trans     &trans     &trans     &trans     &trans
             >;
         };
@@ -269,7 +283,7 @@
 &bt BT_CLR  &bt BT_SEL 4  &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &none   &none           &none           &none         &none            &studio_unlock
 &none       &none         &none         &none         &none         &none         &none   &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none
 &none       &mkp MB4      &mkp RCLK     &mkp MCLK     &mkp LCLK     &mkp MB5      &none   &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none
-&to 2       &none         &none         &none         &none         &none         &none   &none           &none           &none         &none            &to 4
+&to 3       &none         &none         &none         &none         &none         &none   &none           &none           &none         &none            &to 5
                                         &trans        &trans        &trans        &trans  &trans          &trans
             >;
         };
@@ -280,22 +294,8 @@
 &studio_unlock  &none           &none         &none           &none            &none   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR
 &none           &msc SCRL_LEFT  &msc SCRL_UP  &msc SCRL_DOWN  &msc SCRL_RIGHT  &none   &none         &none         &none         &none         &none         &none
 &none           &mmv MOVE_LEFT  &mmv MOVE_UP  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none   &mkp MB5      &mkp LCLK     &mkp MCLK     &mkp RCLK     &mkp MB4      &none
-&to 3           &none           &none         &none           &none            &none   &none         &none         &none         &none         &none         &to 0
+&to 4           &none           &none         &none           &none            &none   &none         &none         &none         &none         &none         &to 0
                                               &trans          &trans           &trans  &trans        &trans        &trans
-            >;
-        };
-        /* * LAYER 4: TRACKBALL STATE (ISOLATED)
-         * This layer contains nothing but &trans (transparent) keys. 
-         * It cannot be accessed by normal typing; it only exists as a boolean 
-         * "flag" (On/Off) triggered by the combo to tell the listeners to swap.
-         */
-        trackball_swap_layer {
-            bindings = <
-&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-                     &trans &trans &trans   &trans &trans &trans
             >;
         };
     };
@@ -312,33 +312,45 @@
 
 &trackball_peripheral_listener {
     /* --- LEFT TRACKBALL --- */
-    
+
     layer_5_mouse {
         /* The engine checks this FIRST. If Layer 5 is active, it strips the  
          * scroll mapper and makes it a mouse.
          */
-        layers = <5>; 
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>, <&zip_ble_report_rate_limit>; 
+
+        layers = <5>;
+        input-processors =
+            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_ble_report_rate_limit>;
     };
 
     layer_0_scroll {
         /* The engine checks this LAST. If Layer 5 is NOT active, it falls back 
          * to Layer 0 and makes it a Scroll Wheel.
          */
+
         layers = <0>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_snap>;
+        input-processors =
+            <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_xy_to_scroll_mapper>,
+            <&zip_scroll_snap>;
     };
 };
 
 &trackball_central_listener {
     /* --- RIGHT TRACKBALL --- */
-    
+
     layer_5_scroll {
         /* The right side only has one override, so order doesn't matter here. 
          * Layer 0 does nothing (remains a Mouse based on the .overlay).
          * Layer 5 overrides the hardware to become a Scroll Wheel.
          */
+
         layers = <5>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>, <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_snap>;
+        input-processors =
+            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>,
+            <&zip_xy_scaler 1 3>,
+            <&zip_xy_to_scroll_mapper>,
+            <&zip_scroll_snap>;
     };
 };
