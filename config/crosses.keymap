@@ -263,7 +263,7 @@
             bindings = <
 &mt MINUS TAB  &kp N1          &kp N2          &kp N3              &kp N4            &kp N5         &kp N6     &kp N7             &kp N8                   &kp N9                &kp N0               &mt EQUAL ESCAPE
 &mt CAPS SQT   &kp Q           &kp W           &kp E               &kp R             &kp T          &kp Y      &kp U              &kp I                    &kp O                 &kp P                &kp MINUS
-&sl 2          &kp A           &kp S           &kp D               &kp F             &kp G          &kp H      &kp J              &kp K                    &kp L                 &kp SEMICOLON        &sl 3
+&tog 7         &kp A           &kp S           &kp D               &kp F             &kp G          &kp H      &kp J              &kp K                    &kp L                 &kp SEMICOLON        &tog 6
 &to 5          &mt LEFT_WIN Z  &mt LEFT_ALT X  &mt LEFT_CONTROL C  &mt LEFT_SHIFT V  &kp B          &kp N      &mt RIGHT_SHIFT M  &mt RIGHT_CONTROL COMMA  &mt RIGHT_ALT PERIOD  &mt RIGHT_WIN SLASH  &to 2
                                                &mo_mkp 4 LCLK      &lt 2 SPACE       &to_tap 0 RET  &bspc_del  &lt 3 SPACE        &mo_mkp 5 RCLK
             >;
@@ -320,6 +320,26 @@
 &none           &mmv MOVE_LEFT  &mmv MOVE_UP  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none   &mkp MB5      &mkp LCLK     &mkp MCLK     &mkp RCLK     &mkp MB4      &none
 &to 4           &none           &none         &none           &none            &none   &none         &none         &none         &none         &none         &to 0
                                               &trans          &trans           &trans  &trans        &trans        &trans
+            >;
+        };
+
+        number_left {
+            bindings = <
+&trans  &kp KP_DIVIDE    &kp KP_CLEAR     &kp KP_DOT       &kp KP_NUMBER_0  &trans  &trans  &kp F10  &kp F11  &kp F12  &trans  &trans
+&trans  &kp KP_MULTIPLY  &kp KP_NUMBER_9  &kp KP_NUMBER_8  &kp KP_N7        &trans  &trans  &kp F7   &kp F8   &kp F9   &trans  &trans
+&trans  &kp KP_MINUS     &kp KP_N6        &kp KP_N5        &kp KP_NUMBER_4  &trans  &trans  &kp F4   &kp F5   &kp F6   &trans  &trans
+&trans  &kp KP_PLUS      &kp KP_N3        &kp KP_N2        &kp KP_N1        &trans  &trans  &kp F1   &kp F2   &kp F3   &trans  &trans
+                                          &trans           &trans           &trans  &trans  &trans   &trans
+            >;
+        };
+
+        number_right {
+            bindings = <
+&trans  &trans  &kp F12  &kp F11  &kp F10  &trans  &trans  &kp KP_NUMBER_0  &kp KP_DOT       &kp CLEAR2       &kp KP_DIVIDE    &trans
+&trans  &trans  &kp F9   &kp F8   &kp F7   &trans  &trans  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_MULTIPLY  &trans
+&trans  &trans  &kp F6   &kp F5   &kp F4   &trans  &trans  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_MINUS     &trans
+&trans  &trans  &kp F3   &kp F2   &kp F1   &trans  &trans  &kp KP_N1        &kp KP_N2        &kp KP_NUMBER_3  &kp KP_PLUS      &trans
+                         &trans   &trans   &trans  &trans  &trans           &trans
             >;
         };
     };
