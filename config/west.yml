@@ -16,6 +16,9 @@ manifest:
       url-base: https://github.com/efogdev
     - name: urob
       url-base: https://github.com/urob
+# [ADDED] The remote for the acceleration module
+    - name: oleksandrmaslov
+      url-base: https://github.com/oleksandrmaslov
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -36,6 +39,10 @@ manifest:
       revision: f69a66dc2c19ee182f7212513a9a13c46d5dced9
     - name: zmk-auto-layer
       remote: urob
+      revision: main
+# [ADDED] The acceleration module project
+    - name: zmk-pointing-acceleration
+      remote: oleksandrmaslov
       revision: main
   self:
     path: config
