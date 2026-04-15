@@ -361,10 +361,10 @@
         /* The engine checks this FIRST. If Layer 1 is active, it strips the  
          * scroll mapper and makes it a mouse.
          */
-
-        layers = <1>;
+        /* [CHANGED] Injected &pointer_accel between the transform and the rate limiter */
         input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+            <&pointer_accel>, 
             <&zip_ble_report_rate_limit>;
     };
 
@@ -372,10 +372,10 @@
         /* The engine checks this LAST. If Layer 1 is NOT active, it falls back 
          * to Layer 0 and makes it a Scroll Wheel.
          */
-
         layers = <0>;
         input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_xy_scaler 1 3>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_snap>;
     };
@@ -389,12 +389,21 @@
          * Layer 0 does nothing (remains a Mouse based on the .overlay).
          * Layer 1 overrides the hardware to become a Scroll Wheel.
          */
-
         layers = <1>;
         input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>,
             <&zip_xy_scaler 1 3>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_snap>;
+    };
+
+    layer_0_mouse {
+        /* [ADDED] We must explicitly intercept Layer 0 on the right side 
+         * to apply the acceleration curve before it is sent to the computer.
+         */
+        layers = <0>;
+        input-processors = 
+            <&pointer_accel>,
+            <&zip_ble_report_rate_limit>;
     };
 };
