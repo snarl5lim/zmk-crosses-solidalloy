@@ -378,7 +378,7 @@
 
         layers = <1>;
         input-processors =
-            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT>,
+            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>,
             <&pointer_accel>,
             <&zip_ble_report_rate_limit>;
     };
