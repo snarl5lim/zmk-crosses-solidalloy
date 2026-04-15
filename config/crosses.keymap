@@ -255,6 +255,46 @@
         };
     };
 
+/* * DYNAMIC POINTER ACCELERATION 
+     * [ADDED] We explicitly create the node here to bypass broken includes.
+     */
+    pointer_accel: pointer_accel {
+        compatible = "zmk,input-processor-acceleration";
+        input-type = <INPUT_EV_REL>;
+        
+        /* Precision Mode (Slow movements) */
+        min-factor = <800>;       
+        speed-threshold = <1200>; 
+        
+        /* Traverse Mode (Fast flicks) */
+        max-factor = <3000>;      
+        speed-max = <6000>;       
+        
+        /* The Curve */
+        acceleration-exponent = <2>; 
+        track-remainders;            
+    };
+
+
+/* * DYNAMIC POINTER ACCELERATION
+ * Documentation: https://github.com/oleksandrmaslov/zmk-pointing-acceleration
+ */
+&pointer_accel {
+    input-type = <INPUT_EV_REL>;
+    
+    /* Precision Mode (Slow movements) */
+    min-factor = <800>;       // Multiplies slow movements by 0.8x for fine control
+    speed-threshold = <1200>; // Speeds below 1200 counts/sec use the min-factor
+    
+    /* Traverse Mode (Fast flicks) */
+    max-factor = <3000>;      // Multiplies fast movements by 3.0x to cross the screen
+    speed-max = <6000>;       // Speeds above 6000 counts/sec use the max-factor
+    
+    /* The Curve */
+    acceleration-exponent = <2>; // 1 = Linear, 2 = Quadratic (Smooth curve), 3 = Cubic
+    track-remainders;            // Retains fractional movement data for high precision
+};
+
     chosen { zmk,physical-layout = &gggw_crosses_54_layout; };
 
     keymap {
@@ -345,25 +385,6 @@
             >;
         };
     };
-};
-
-/* * DYNAMIC POINTER ACCELERATION
- * Documentation: https://github.com/oleksandrmaslov/zmk-pointing-acceleration
- */
-&pointer_accel {
-    input-type = <INPUT_EV_REL>;
-    
-    /* Precision Mode (Slow movements) */
-    min-factor = <800>;       // Multiplies slow movements by 0.8x for fine control
-    speed-threshold = <1200>; // Speeds below 1200 counts/sec use the min-factor
-    
-    /* Traverse Mode (Fast flicks) */
-    max-factor = <3000>;      // Multiplies fast movements by 3.0x to cross the screen
-    speed-max = <6000>;       // Speeds above 6000 counts/sec use the max-factor
-    
-    /* The Curve */
-    acceleration-exponent = <2>; // 1 = Linear, 2 = Quadratic (Smooth curve), 3 = Cubic
-    track-remainders;            // Retains fractional movement data for high precision
 };
 
 /* * TRACKBALL LISTENER OVERRIDES
