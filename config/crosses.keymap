@@ -362,7 +362,7 @@
 /* * TRACKBALL LISTENER OVERRIDES
  * ZMK Documentation: Layer Specific Overrides
  * (https://zmk.dev/docs/keymaps/input-processors/usage#layer-specific-overrides)
-/* * SOFTWARE-DEFINED TRACKBALL LOGIC
+ * * SOFTWARE-DEFINED TRACKBALL LOGIC
  * Base Hardware: Both trackballs are Mice at 600 CPI.
  * Layer 0: Left = Scroll, Right = Mouse.
  * Layer 1: Left = Mouse, Right = Scroll.
@@ -412,6 +412,7 @@
             <&zip_xy_scaler 1 3>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_snap>;
+    }; /* <--- ADDED CLOSING BRACE */
 
      /* Since your Right trackball defaults to a mouse on Layer 0 based on the overlay,
      * we must create a quick override here to catch Layer 0 and apply the acceleration.
