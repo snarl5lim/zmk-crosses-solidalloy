@@ -351,25 +351,25 @@
 /* * SOFTWARE-DEFINED TRACKBALL LOGIC
  * Base Hardware: Both trackballs are Mice at 600 CPI.
  * Layer 0: Left = Scroll, Right = Mouse.
- * Layer 5: Left = Mouse, Right = Scroll.
+ * Layer 1: Left = Mouse, Right = Scroll.
  */
 
 &trackball_peripheral_listener {
     /* --- LEFT TRACKBALL --- */
 
-    layer_5_mouse {
-        /* The engine checks this FIRST. If Layer 5 is active, it strips the  
+    layer_1_mouse {
+        /* The engine checks this FIRST. If Layer 1 is active, it strips the  
          * scroll mapper and makes it a mouse.
          */
 
-        layers = <5>;
+        layers = <1>;
         input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
             <&zip_ble_report_rate_limit>;
     };
 
     layer_0_scroll {
-        /* The engine checks this LAST. If Layer 5 is NOT active, it falls back 
+        /* The engine checks this LAST. If Layer 1 is NOT active, it falls back 
          * to Layer 0 and makes it a Scroll Wheel.
          */
 
@@ -384,13 +384,13 @@
 &trackball_central_listener {
     /* --- RIGHT TRACKBALL --- */
 
-    layer_5_scroll {
+    layer_1_scroll {
         /* The right side only has one override, so order doesn't matter here. 
          * Layer 0 does nothing (remains a Mouse based on the .overlay).
-         * Layer 5 overrides the hardware to become a Scroll Wheel.
+         * Layer 1 overrides the hardware to become a Scroll Wheel.
          */
 
-        layers = <5>;
+        layers = <1>;
         input-processors =
             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>,
             <&zip_xy_scaler 1 3>,
