@@ -13,11 +13,11 @@
 &pointer_accel {
     input-type = <INPUT_EV_REL>; // Tells it to look for mouse movement
     track-remainders;            // Saves tiny fractional movements for high precision
-    min-factor = <800>;          // 0.8x at very slow speeds
-    max-factor = <3000>;         // 3.0x at fast speeds
-    speed-threshold = <1200>;    // Starts accelerating at 1200 counts/sec
+    min-factor = <600>;          // 0.6x at very slow speeds
+    max-factor = <4000>;         // 4.0x at fast speeds
+    speed-threshold = <1000>;    // Starts accelerating at 1000 counts/sec
     speed-max = <6000>;          // Reaches max speed at 6000 counts/sec
-    acceleration-exponent = <2>; // Uses a smooth quadratic curve
+    acceleration-exponent = <3>; // Uses a smooth quadratic curve
 };
 
 /* Global Scroll Snap Configuration */
