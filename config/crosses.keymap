@@ -124,12 +124,12 @@
             bindings = <&lt 7 ESC>, <&tog 7>;
         };
 
-        // NEW: Right Inner Thumb -> Tap: BSPC / Hold: Layer 6 / Double-Tap: Toggle Layer 6
-        td_bspc_num_l: tap_dance_bspc_num_l {
+        // NEW: Right Inner Thumb -> Tap: TAB / Hold: Layer 6 / Double-Tap: Toggle Layer 6
+        td_tab_num_l: tap_dance_tab_num_l {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&lt 6 BSPC>, <&tog 6>;
+            bindings = <&lt 6 TAB>, <&tog 6>;
         };
 
         mo_mkp: layer_tap_mouse_click {
@@ -273,7 +273,7 @@
 &kp BSLH       &kp Q           &kp W           &kp E               &kp R             &kp T          &kp Y           &kp U              &kp I                    &kp O                 &kp P                &kp SINGLE_QUOTE
 &to 0          &kp A           &kp S           &kp D               &kp F             &kp G          &kp H           &kp J              &kp K                    &kp L                 &kp SEMICOLON        &to 0
 &to 5          &mt LEFT_WIN Z  &mt LEFT_ALT X  &mt LEFT_CONTROL C  &mt LEFT_SHIFT V  &kp B          &kp N           &mt RIGHT_SHIFT M  &mt RIGHT_CONTROL COMMA  &mt RIGHT_ALT PERIOD  &mt RIGHT_WIN SLASH  &to 2
-                                               &lt 4 RET           &lt 2 SPACE       &td_esc_num_r  &td_bspc_num_l  &lt 3 SPACE        &lt 5 TAB
+                                               &lt 4 RET           &lt 2 SPACE       &td_esc_num_r  &td_tab_num_l  &lt 3 SPACE        &lt 5 BSPC
             >;
         };
 
